@@ -26,22 +26,22 @@ Setup
 <h3>Endpoints</h3>
 <ul>
       <li style="text-decoration:underline;">Note: All of these can be done via browser</li>
-    <li>    Logging In --> https://testerapi.herokuapp.com/signup/{{ USERNAME }}/PASSWORD </li>
+    <li>    Logging In --> https://testerapi.herokuapp.com/signup/USERNAME/PASSWORD </li>
     <li style = "margin-left:100px;">                  Replace PASSWORD with desired values </li>
 
     <li>    Logging out --> https://testerapi.herokuapp.com/logout </li>
 
-    <li>    Get Records (Get) --> https://testerapi.herokuapp.com/api/v1/entry/?format=json&username={{ USERNAME }}&api_key={{ API_KEY }} </li>
+    <li>    Get Records (Get) --> https://testerapi.herokuapp.com/api/v1/entry/?format=json&username=USERNAME&api_key=API_KEY </li>
     <br><li > <span style = "text-decoration:underline;"> All of these need to be done programmatically. </span><span style = "text-decoration:none;"> (You need to pass in the header and data attributes which can only be done with CURL, requests or other HTML library)</span> </li>
     </ul>
     <ul>
-    <li>    Create a Record (Post) --> https://testerapi.herokuapp.com/api/v1/entry/?username={{ USERNAME }}&api_key={{ API_KEY }} </li>
+    <li>    Create a Record (Post) --> https://testerapi.herokuapp.com/api/v1/entry/?username=USERNAME&api_key=API_KEY </li>
 
-    <li>    Edit a Record (Put) --> https://testerapi.herokuapp.com/api/v1/entry/NUMBER?username={{ USERNAME }}&api_key={{ API_KEY }} </li>
+    <li>    Edit a Record (Put) --> https://testerapi.herokuapp.com/api/v1/entry/NUMBER?username=USERNAME&api_key=API_KEY </li>
 
     <li>
 
-      Delete a Record (Delete) --> https://testerapi.herokuapp.com/api/v1/entry/NUMBER/?username={{ USERNAME }}&api_key={{ API_KEY }} </li>
+      Delete a Record (Delete) --> https://testerapi.herokuapp.com/api/v1/entry/NUMBER/?username=USERNAME&api_key=API_KEY </li>
 </ul>
 
 <h1>How To Use</h1>
@@ -66,20 +66,20 @@ go to https://testerapi.herokuapp.com/signup/username/password where you put wha
 </li><li>        >>> post_data = {'info': 'Bought Two scoops of Djangoa'}
 </li><li>        >>> headers = {'Content-type': 'application/json'}
 </li><li>        >>> #Note: Remember to switch the below username and api-key to your specific credentials.
-</li><li>        >>> r = requests.post("http://localhost:8000/api/v1/entry/?username={{ USERNAME }}&api_key={{ API_KEY }}", data=json.dumps(post_data),
+</li><li>        >>> r = requests.post("http://localhost:8000/api/v1/entry/?username=USERNAME&api_key=API_KEY", data=json.dumps(post_data),
 
 </li>
 </ul>
 <li><b>Step 3:</b> Check to see your transaction worked
 
-        The Post Request will respond a 201 created response. To check this navigate your browser to https://testerapi.herokuapp.com/pi/v1/entry/?username={{ USERNAME }}&api_key={{ API_KEY }}
+        The Post Request will respond a 201 created response. To check this navigate your browser to https://testerapi.herokuapp.com/pi/v1/entry/?username=USERNAME&api_key=API_KEY
 
 </li>
 <li><b>Step 4:</b> Experiment with other Endpoints
 
-        Now that you have your API-Key interacting with data your create is a snitch! You will only have access to your user's data so if you want to create a new user you can just renavigate to https://testerapi.herokuapp.com/signup/{{ USERNAME }}/PASSWORD and you will get a new {{ API_KEY }} specific to that person's scope.
+        Now that you have your API-Key interacting with data your create is a snitch! You will only have access to your user's data so if you want to create a new user you can just renavigate to https://testerapi.herokuapp.com/signup/USERNAME/PASSWORD and you will get a new API_KEY specific to that person's scope.
 
-      https://testerapi.herokuapp.com/pi/v1/entry/?username={{ USERNAME }}&api_key={{ API_KEY }}
+      https://testerapi.herokuapp.com/pi/v1/entry/?username=USERNAME&api_key=API_KEY
   </li>
 
 </ul>
@@ -124,7 +124,7 @@ This project was built on Django and Python on the backend. Custom CSS/HTML, mob
     </li>
     <li> headers = {'Content-type': 'application/json'}</li>
     <li>
-        r = post("http://localhost:8000/api/expense/?username={{ USERNAME }}&api_key={{ API_KEY }}", data=json.dumps(post_data), headers=headers)
+        r = post("http://localhost:8000/api/expense/?username=USERNAME&api_key=API_KEY", data=json.dumps(post_data), headers=headers)
 </li><li>
 
 
