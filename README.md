@@ -88,19 +88,19 @@ This project was built on Django and Python on the backend. Custom CSS/HTML, mob
 
   <li>
 
- POST (Create)
+ POST (Create): <br>
  curl --dump-header - -H "Content-Type: application/json" -X POST --data '{"info":"text"}' http://localhost:8000/api/v1/entry/
 </li><li>
- PUT (Edit)
+ PUT (Edit): <br>
  curl --dump-header - -H "Content-Type: application/json" -X PUT --data '{"info": "This will probably be my last post." }' http://localhost:8000/api/v1/entry/4/
 </li><li>
- Collection of PUT
+ Collection of PUT: <br>
  curl --dump-header - -H "Content-Type: application/json" -X PUT --data '{"info": 'goodday'}' http://localhost:8000/api/v1/entry/
 </li><li>
- Deleting a Record
+ Deleting a Record: <br>
  curl --dump-header - -H "Content-Type: application/json" -X DELETE  http://localhost:8000/api/v1/entry/4/
 </li><li>
- Deleteing many Records
+ Deleteing many Records: <br>
  curl --dump-header - -H "Content-Type: application/json" -X DELETE  http://localhost:8000/api/v1/entry/
 </li>
 
