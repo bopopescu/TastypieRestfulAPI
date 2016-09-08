@@ -92,7 +92,7 @@ DATABASES = {
 #    }
 # not the same database as live version
 
-'default': dj_database_url.config(default='postgres://uocqetwjikrvap:v-R2EPrZQstDpmiPEiRl9g6wQw@ec2-54-243-249-65.compute-1.amazonaws.com:5432/d924s0dvs7upd4')
+'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 
 }
 
