@@ -1,7 +1,8 @@
  #!/usr/bin/python
 from ast import *
 from django.contrib.auth import authenticate,login, logout
-
+import random
+import string
 
 
 from json import *
@@ -54,17 +55,38 @@ class SignupViewa(TemplateView):
         if User.objects.filter(username = self.kwargs['username']):
 
             kevina = authenticate(username=self.kwargs['username'], password=self.kwargs['password'])
-            login(self.request, kevina)
-            print self.request.user
+
+
+
             if kevina is None:
                 data['error'] = True
 
             else:
-                pass
+                login(self.request, kevina)
+                data['apikey'] = kevina.email
+                self.request.session['USERNAME'] = kevina.username
+                self.request.session['API_KEY'] = kevina.email
 
         else:
-            User.objects.create_user(self.kwargs['username'], 'lennon@thebeatles.com', self.kwargs['password'])
+            api_keya = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(15))
+            # api_keya = "hello"
+            User.objects.create_user(self.kwargs['username'], api_keya, self.kwargs['password'])
             kevina = authenticate(username=self.kwargs['username'], password=self.kwargs['password'])
-            ApiKey.objects.create(key='1a23', user=kevina)
-            data['apikey'] = '1a23'
+            ApiKey.objects.create(key=api_keya, user=kevina)
+            data['apikey'] = api_keya
+            self.request.session['USERNAME'] = kevina.username
+            self.request.session['API_KEY'] = kevina.email
         return data
+
+def home(request):
+    try:
+        request.session['USERNAME']
+    except Exception as e:
+        request.session['USERNAME'] = 'USERNAME'
+
+    try:
+        request.session['API_KEY']
+    except Exception as e:
+        request.session['API_KEY'] = 'API_KEY'
+
+    return render(request, "index.html", {'API_KEY':request.session['API_KEY'],'USERNAME':request.session['USERNAME']})

@@ -23,7 +23,7 @@ class EntryResource(ModelResource):
 
     class Meta:
         queryset = accounts.objects.all()
-        resource_name = 'expense'
+        resource_name = 'entry'
         authorization = ExpenseAuthorization()
         authentication = ApiKeyAuthentication()
         # authorization = ExpenseAuthorization()
