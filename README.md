@@ -5,7 +5,7 @@
 This project is an exercise in making a barebones Restful API. Simple authentication and lightweight processing through the TastyPie django library. Documentation is as follows: <br><br>
 
 <h1>QuickStart</h1>
-Go to --> https://testerapi.herokuapp.com to get started 
+Go to --> https://testerapi.herokuapp.com to get started. <br> 
 There are a few endpoints each with their own purpose. Here is a quick start guide:
 
 Setup
