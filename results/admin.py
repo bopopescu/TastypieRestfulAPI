@@ -2,9 +2,11 @@ from django.contrib import admin
 from results.models import *
 from models import *
 # Register your models here.
-admin.site.register(active_clients)
-admin.site.register(email_subscribers)
-# admin.site.register(accounts)
+
+class kevin(admin.ModelAdmin):
+    list_display = ('info', 'user')
+
+admin.site.register(accounts, kevin)
 #
 # #admin.site.register(initialquestion)
 # from django.forms import TextInput, Textarea
@@ -12,9 +14,3 @@ admin.site.register(email_subscribers)
 #
 #
 #
-
-
-class kevin(admin.ModelAdmin):
-    list_display = ('hashtag', 'pk')
-
-admin.site.register(accounts, kevin)

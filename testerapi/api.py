@@ -1,32 +1,33 @@
 from tastypie.resources import ModelResource
 from results.models import *
 
-from tastypie.authorization import DjangoAuthorization
-# from tastypie.authorization import BasicAuthorization
+from tastypie.authorization import *
+from tastypie.authentication import ApiKeyAuthentication
+# from tastypie.authentication import Authorization
+
 from django.contrib.auth.models import User
 from tastypie import fields
 
+class ExpenseAuthorization(Authorization):
+
+    def read_list(self, object_list, bundle):
+
+        return object_list.filter(user=bundle.request.user)
 
 
 class EntryResource(ModelResource):
+
+    def hydrate(self, bundle):
+        bundle.obj.user = bundle.request.user
+        return bundle
+
     class Meta:
         queryset = accounts.objects.all()
-        resource_name = 'entry'
-
-        # authentication = BasicAuthentication()
-        authorization = DjangoAuthorization()
-
-
-class UserResource(ModelResource):
-    class Meta:
-        queryset = User.objects.all()
-        resource_name = 'user'
-        allowed_methods = ['get']
-        fields = ['username', 'created_at']
-
-
-
-#
+        resource_name = 'expense'
+        authorization = ExpenseAuthorization()
+        authentication = ApiKeyAuthentication()
+        # authorization = ExpenseAuthorization()
+        # authentication = ApiKeyAuthentication()
 # POST (Create)
 # curl --dump-header - -H "Content-Type: application/json" -X POST --data '{"sdf":"sdlkfj","hashtag": "Another Post","user": "/api/v1/user/1/"}' http://localhost:8000/api/v1/entry/
 #
@@ -41,3 +42,17 @@ class UserResource(ModelResource):
 #
 # Deleteing many Records
 # curl --dump-header - -H "Content-Type: application/json" -X DELETE  http://localhost:8000/api/v1/entry/
+#
+# r = post("http://localhost:8000/api/expense/?username=sheryl&api_key=1a23", data=json.dumps(post_data), headers=headers)
+#
+# http://localhost:8000/api/v1/entry?format=json&username=sheryl&api_key=1a23
+# post_data = {'infoa': 'Bought Two scoops of Djangoa'}
+# headers = {'Content-type': 'application/json'}
+# r = requests.post("http://localhost:8000/api/v1/entry/?username=sheryl&api_key=1a23", data=json.dumps(post_data), headers=headers)
+
+
+# r = requests.post("http://localhost:8000/api/v1/entry/?username=kevin&api_key=1a23", data=json.dumps(post_data), headers=headers)
+# http://localhost:8000/api/v1/expense/?format=json&username=kevin&api_key=1a23
+
+
+# r = requests.post("http://localhost:8000/api/v1/expense/?username=kevin&api_key=1a23", data=json.dumps(post_data), headers=headers)

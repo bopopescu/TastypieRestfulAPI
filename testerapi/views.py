@@ -34,14 +34,16 @@ from results.models import *
 
 from django.forms import *
 
+from tastypie.models import ApiKey
 
 
 class LogoutViewa(TemplateView):
     template_name = 'logout.html'
 
     def get_context_data(self, **kwargs):
+        # print self.request.user
         logout(self.request)
-
+        # pass
 class SignupViewa(TemplateView):
     template_name = 'success.html'
 
@@ -52,14 +54,17 @@ class SignupViewa(TemplateView):
         if User.objects.filter(username = self.kwargs['username']):
 
             kevina = authenticate(username=self.kwargs['username'], password=self.kwargs['password'])
-            print 'auth'
+            login(self.request, kevina)
+            print self.request.user
             if kevina is None:
                 data['error'] = True
+
             else:
                 pass
 
         else:
             User.objects.create_user(self.kwargs['username'], 'lennon@thebeatles.com', self.kwargs['password'])
-            user = authenticate(username=self.kwargs['username'], password=self.kwargs['password'])
-
+            kevina = authenticate(username=self.kwargs['username'], password=self.kwargs['password'])
+            ApiKey.objects.create(key='1a23', user=kevina)
+            data['apikey'] = '1a23'
         return data

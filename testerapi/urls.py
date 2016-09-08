@@ -21,18 +21,19 @@ from tastypie.api import Api
 # entry_resource = EntryResource()
 
 v1_api = Api(api_name='v1')
-v1_api.register(UserResource())
+
 v1_api.register(EntryResource())
 
 urlpatterns = patterns('',
     url(r'^logout/', LogoutViewa.as_view()),
     url(r'^api/', include(v1_api.urls)),
+    url(r'^admin/', admin.site.urls),
     url(
     regex=r'^signup/(?P<username>\D+)/(?P<password>\D+?)$',
     view=SignupViewa.as_view(),
     name='signup'
     ),
-
+    url
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 
     url(r'^' + admin_media_url , 'django.views.static.serve', {'document_root': admin_media_path,}, name='admin-media'),
