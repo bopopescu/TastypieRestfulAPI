@@ -1,0 +1,16 @@
+
+{% if error %}
+
+Username:{{ username }} already taken. Sign in with another username. 
+
+{% else %}
+Welcome! {{ username }}
+<br><br>
+You are now registered to use the api!
+
+
+<br><br>
+
+To Sign up with a new user name reenter http://localhost:8000/<i>username</i>/<i>password</i> where your username and password are supplanted in the italic parts of the url.
+
+{% endif %}

@@ -14,14 +14,24 @@ admin_media_path = os.path.join(django.__path__[0], 'contrib', 'admin', 'media')
 
 from allauth.account.views import LoginView, SignupView
 
-from testerapi.api import EntryResource
+from testerapi.api import *
 from django.conf.urls import url, include
+from tastypie.api import Api
 
-entry_resource = EntryResource()
+# entry_resource = EntryResource()
+
+v1_api = Api(api_name='v1')
+v1_api.register(UserResource())
+v1_api.register(EntryResource())
 
 urlpatterns = patterns('',
-
-    url(r'^api/', include(entry_resource.urls)),
+    url(r'^logout/', LogoutViewa.as_view()),
+    url(r'^api/', include(v1_api.urls)),
+    url(
+    regex=r'^signup/(?P<username>\D+)/(?P<password>\D+?)$',
+    view=SignupViewa.as_view(),
+    name='signup'
+    ),
 
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 

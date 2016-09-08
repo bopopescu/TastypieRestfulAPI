@@ -247,10 +247,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # ACCOUNT_ADAPTER = 'project.users.allauth.AccountAdapter'
-
-
-
-from django.conf import global_settings
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS
-TEMPLATE_CONTEXT_PROCESSORS += ("testerapi.processor.foos",)
-TEMPLATES[0]['OPTIONS']['context_processors'].append("testerapi.processor.foos")
