@@ -1,13 +1,5 @@
-<head>
-  <style>
-
-  ul {margin-left:40px;line-height: 20px;list-style-type: none;}
-  ul li{padding-bottom:10px;}
 
 
-  </style>
-</head>
-<div style = "padding:80px;">
 <h1>Purpose</h1><br><br>
 
 This project is an exercise in making a barebones Restful API. Simple authentication and lightweight processing through the TastyPie django library. Documentation is as follows: <br><br>
